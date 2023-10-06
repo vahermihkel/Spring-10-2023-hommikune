@@ -1,18 +1,20 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
-        int playerXCoordinate = 3;
-        int playerYCoordinate = 3;
-        char playerSymbol = 'x';
+        World world = new World();
 
-        int enemyXCoordinate = 2;
-        int enemyYCoordinate = 2;
-        char enemySymbol = 'z';
+        Player player = new Player();
+//        System.out.println(player.lives); // <-- kui on Character, siis on Characteri omadused
+        Enemy enemy = new Enemy();
+//        Character character = new Character(); <-- ei saa, kui on abstract
+        List<Character> characters = new ArrayList<>();
+        characters.add(player);
+        characters.add(enemy);
 
-        int worldHeight = 5;
-        int worldWidth = 10;
 
         // deklareerimine --> uue muutuja koos tema mälukoha välja kuulutamisega
         // initsialiseerimine --> esimest korda väärtuse andmine
@@ -25,47 +27,20 @@ public class Main {
 //        Item sword = new Item();
 //        Item dagger = new Item();
 
-        printMap(playerXCoordinate, playerYCoordinate, playerSymbol, enemyXCoordinate, enemyYCoordinate, enemySymbol, worldHeight, worldWidth);
+        world.printMap(characters);
 
         String input = scanner.nextLine();
         while (!input.equals("end")) {
-            switch (input) {
-                case "w" -> playerYCoordinate--;
-                case "s" -> playerYCoordinate++;
-                case "a" -> playerXCoordinate--;
-                case "d" -> playerXCoordinate++;
-            }
+            player.move(input);
 
-            printMap(playerXCoordinate, playerYCoordinate, playerSymbol, enemyXCoordinate, enemyYCoordinate, enemySymbol, worldHeight, worldWidth);
+            world.printMap(characters);
             input = scanner.nextLine();
         }
 
     }
 
-    private static void printMap(int playerXCoordinate, int playerYCoordinate, char playerSymbol, int enemyXCoordinate, int enemyYCoordinate, char enemySymbol, int worldHeight, int worldWidth) {
-        char symbol;
-        for (int y = 0; y < worldHeight; y++) {
-            for (int x = 0; x < worldWidth; x++) {
-             // if (päringKasOnÕigused() || päringVeelKuhugi()) PRIMITIIV ENNE, LÄBIMINEV ENNE
-                if (y == 0 || y == worldHeight - 1) {
-                    symbol = '-';
-                } else if (x == 0 || x == worldWidth - 1) {
-                    symbol = '|';
-                } else {
-                    symbol = ' ';
-                }
-             // if (päringKasOnÕigused() && päringVeelKuhugi()) PRIMITIIV ENNE, FEILIV ENNE
-                if (playerXCoordinate == x && playerYCoordinate == y) {
-                    symbol = playerSymbol;
-                }
-                if (enemyXCoordinate == x && enemyYCoordinate == y) {
-                    symbol = enemySymbol;
-                }
-                System.out.print(symbol);
-            }
-            System.out.println();
-        }
-    }
+    // private vs public <--- kas seda funktsiooni saab kasutada väljaspool seda klassi
+
 }
 
 
