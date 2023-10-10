@@ -5,15 +5,26 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        World world = new World();
+        World world = new World(5, 8);
 
-        Player player = new Player();
+
+
+        Player player = new Player(world);
 //        System.out.println(player.lives); // <-- kui on Character, siis on Characteri omadused
-        Enemy enemy = new Enemy();
+        Enemy enemy = new Enemy(world);
 //        Character character = new Character(); <-- ei saa, kui on abstract
         List<Character> characters = new ArrayList<>();
         characters.add(player);
         characters.add(enemy);
+
+
+        Item sword = new Item(world, ItemType.SWORD);
+        Item hammer = new Item(world, ItemType.HAMMER);
+        Item boot = new Item(world, ItemType.BOOT);
+        List<Item> items = new ArrayList<>();
+        items.add(sword);
+        items.add(hammer);
+        items.add(boot);
 
 
         // deklareerimine --> uue muutuja koos tema mälukoha välja kuulutamisega
@@ -27,13 +38,20 @@ public class Main {
 //        Item sword = new Item();
 //        Item dagger = new Item();
 
-        world.printMap(characters);
+        world.printMap(characters, items);
 
         String input = scanner.nextLine();
         while (!input.equals("end")) {
-            player.move(input);
+            player.move(input, world);
 
-            world.printMap(characters);
+            world.printMap(characters, items);
+
+            for (Item i: items) {
+                if (i.xCoordinate == player.xCoordinate && i.yCoordinate == player.yCoordinate) {
+                    player.addItem(i);
+                }
+            }
+
             input = scanner.nextLine();
         }
 
