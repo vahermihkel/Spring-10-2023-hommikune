@@ -1,3 +1,10 @@
+import characters.Character;
+import characters.Enemy;
+import characters.Player;
+import items.Item;
+import items.ItemType;
+import world.World;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -10,9 +17,9 @@ public class Main {
 
 
         Player player = new Player(world);
-//        System.out.println(player.lives); // <-- kui on Character, siis on Characteri omadused
+//        System.out.println(player.lives); // <-- kui on characters.Character, siis on Characteri omadused
         Enemy enemy = new Enemy(world);
-//        Character character = new Character(); <-- ei saa, kui on abstract
+//        characters.Character character = new characters.Character(); <-- ei saa, kui on abstract
         List<Character> characters = new ArrayList<>();
         characters.add(player);
         characters.add(enemy);
@@ -26,6 +33,9 @@ public class Main {
         items.add(hammer);
         items.add(boot);
 
+//        sword.strength = 99;
+//        sword.symbol = 'f';
+
 
         // deklareerimine --> uue muutuja koos tema mälukoha välja kuulutamisega
         // initsialiseerimine --> esimest korda väärtuse andmine
@@ -33,10 +43,10 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 //        ObjectMapper objectMapper = new ObjectMapper();
 //        RestTemplate restTemplate = new RestTemplate();
-//        Character player = new Player();
-//        Character enemy = new Enemey();
-//        Item sword = new Item();
-//        Item dagger = new Item();
+//        characters.Character player = new characters.Player();
+//        characters.Character enemy = new Enemey();
+//        item.Item sword = new item.Item();
+//        item.Item dagger = new item.Item();
 
         world.printMap(characters, items);
 
@@ -47,7 +57,8 @@ public class Main {
             world.printMap(characters, items);
 
             for (Item i: items) {
-                if (i.xCoordinate == player.xCoordinate && i.yCoordinate == player.yCoordinate) {
+                if (i.getxCoordinate() == player.getxCoordinate() &&
+                        i.getyCoordinate() == player.getyCoordinate()) {
                     player.addItem(i);
                 }
             }

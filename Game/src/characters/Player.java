@@ -1,24 +1,30 @@
+package characters;
+
+import items.Item;
+import world.World;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Player extends Character {
     // {lives: 3, symbol: "x", xCoord: 3, yCoord: 3, items: [{name: "SWORD", strength}, ...]}
-    int lives;
+//    int lives;
     List<Item> items;
 
     public Player(World world) {
         super('x', world);
         this.items = new ArrayList<>();
+        health = 10.0;
     }
 
     public void addItem(Item item) {
         if (this.items.contains(item)) {
-            item.duration++;
+            item.increaseDuration();
         } else {
             items.add(item);
         }
-//        for (Item i: this.items) {
-//            System.out.println(i.duration);
+//        for (item.Item i: this.items) {
+//            System.out.println(i);
 //        }
     }
 
@@ -29,7 +35,7 @@ public class Player extends Character {
                     yCoordinate--;}
             }
             case "s" -> {
-                if (yCoordinate < world.height - 2) {
+                if (yCoordinate < world.getHeight() - 2) {
                     yCoordinate++;}
             }
             case "a" -> {
@@ -37,7 +43,7 @@ public class Player extends Character {
                     xCoordinate--;}
             }
             case "d" -> {
-                if (xCoordinate < world.width - 2) {
+                if (xCoordinate < world.getWidth() - 2) {
                     xCoordinate++;}
             }
             default -> System.out.println("Use 'W', 'A', 'S', 'D' for moving around");
