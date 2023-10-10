@@ -11,12 +11,12 @@ import java.util.Random;
 // implements <--- interface-de jaoks (liideste jaoks)    lõpmatu arv
 
 public class Item implements WorldObject, Fight {
-    private ItemType name;
+    private final ItemType name;
     private double strength;
     private int duration;
-    private int xCoordinate;
-    private int yCoordinate;
-    private char symbol;
+    private final int xCoordinate;
+    private final int yCoordinate;
+    private final char symbol;
 
     public Item(World world, ItemType name) {
         this.name = name;

@@ -6,8 +6,8 @@ import items.Item;
 import java.util.List;
 
 public class World {
-    private int height;
-    private int width;
+    private final int height;
+    private final int width;
 
     public World(int height, int width) {
         this.height = height;
