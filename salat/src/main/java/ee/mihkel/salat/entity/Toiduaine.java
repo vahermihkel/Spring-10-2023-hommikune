@@ -2,16 +2,21 @@ package ee.mihkel.salat.entity;
 
 //import lombok.Builder;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 //@Builder
 @Getter
 //@Setter <-- automaatselt andmebaasi Hibernate alsuel, siis on vaja
 //@AllArgsConstructor
-//@NoArgsConstructor
+@NoArgsConstructor
+@Entity
 public class Toiduaine {
+    @Id
     private String nimi;
     private int valk;
     private int rasv;
