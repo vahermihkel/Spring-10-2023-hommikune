@@ -1,7 +1,7 @@
 package ee.tarvi.hiloproovit.controller;
 
+import ee.tarvi.hiloproovit.model.GuessResponse;
 import ee.tarvi.hiloproovit.service.CardService;
-import ee.tarvi.hiloproovit.util.RandomCard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,36 +18,48 @@ public class CardController {
     }
 
     @GetMapping("/higher")
-    public String optionHigher() {
+    public GuessResponse optionHigher() {
+        GuessResponse guessResponse = new GuessResponse();
+        guessResponse.setScore(cardService.getScore());
+
         String response = cardService.checkIfTimeout();
         if (!response.equals("")) {
-            return response;
+            guessResponse.setMessage(response);
+            return guessResponse;
         }
 
-        response = cardService.checkIfCorrect("higher");
-        return response;
+        guessResponse = cardService.checkIfCorrect("higher");
+        return guessResponse;
     }
 
     @GetMapping("/lower")
-    public String optionLower() {
+    public GuessResponse optionLower() {
+        GuessResponse guessResponse = new GuessResponse();
+        guessResponse.setScore(cardService.getScore());
+
         String response = cardService.checkIfTimeout();
         if (!response.equals("")) {
-            return response;
+            guessResponse.setMessage(response);
+            return guessResponse;
         }
 
-        response = cardService.checkIfCorrect("lower");
-        return response;
+        guessResponse = cardService.checkIfCorrect("lower");
+        return guessResponse;
     }
 
     @GetMapping("/equal")
-    public String optionEqual() {
+    public GuessResponse optionEqual() {
+        GuessResponse guessResponse = new GuessResponse();
+        guessResponse.setScore(cardService.getScore());
+
         String response = cardService.checkIfTimeout();
         if (!response.equals("")) {
-            return response;
+            guessResponse.setMessage(response);
+            return guessResponse;
         }
 
-        response = cardService.checkIfCorrect("equal");
-        return response;
+        guessResponse = cardService.checkIfCorrect("equal");
+        return guessResponse;
     }
 
 }
