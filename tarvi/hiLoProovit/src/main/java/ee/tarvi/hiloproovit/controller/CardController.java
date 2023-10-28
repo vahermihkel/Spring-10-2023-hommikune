@@ -1,9 +1,11 @@
 package ee.tarvi.hiloproovit.controller;
 
 import ee.tarvi.hiloproovit.model.GuessResponse;
+import ee.tarvi.hiloproovit.repository.PlayerRepository;
 import ee.tarvi.hiloproovit.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -13,7 +15,10 @@ public class CardController {
     CardService cardService;
 
     @GetMapping("/")
-    public String startRoundRequest() {
+    public String startRoundRequest(
+            @RequestParam String playerName
+    ) {
+       cardService.getPlayer(playerName);
        return cardService.startGame();
     }
 

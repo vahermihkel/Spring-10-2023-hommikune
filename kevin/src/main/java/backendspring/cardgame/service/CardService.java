@@ -32,7 +32,7 @@ public class CardService {
     public GuessResponse checkIfCorrect(String guess) {
         GuessResponse guessResponse = new GuessResponse();
         Card card = getRandomCard();
-        String response = "The next card is: " + card.getName() + " with a rank of " + card.getRank();
+//        String response = "The next card is: " + card.getName() + " with a rank of " + card.getRank();
         if(card.getRank() > baseCard.getRank() && guess.equals("higher") ||
                 card.getRank() < baseCard.getRank() && guess.equals("lower") ||
                 card.getRank() == baseCard.getRank() && guess.equals("equal")
@@ -42,13 +42,12 @@ public class CardService {
             guessResponse.setCard(baseCard);
             guessResponse.setScore(points);
             guessResponse.setMessage("Correct");
-            return guessResponse;
         } else {
             guessResponse.setCard(baseCard);
             guessResponse.setScore(points);
             guessResponse.setMessage("Wrong");
-            return guessResponse;
         }
+        return guessResponse;
     }
 
 
