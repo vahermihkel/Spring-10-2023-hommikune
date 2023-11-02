@@ -1,0 +1,20 @@
+<ng-container *ngIf="player === ''">
+  <input type="text">
+  <button (click)="start()">Start the game</button>
+</ng-container>
+
+<ng-container *ngIf="player !== ''" >
+
+  <p>{{ response }}</p>
+  <!-- näitab kas seda -->
+  <button *ngIf="response !== 'Guess the new card!'" (click)="startNewGuess()">New guess</button>
+
+  <!-- või seda -->
+  <ng-container *ngIf="response === 'Guess the new card!'">
+    <div>{{ card }}</div>
+    <button (click)="guess('lower')">Lower</button>
+    <button (click)="guess('equal')">Equal</button>
+    <button (click)='guess("higher")'>Higher</button>
+  </ng-container>
+
+</ng-container>
