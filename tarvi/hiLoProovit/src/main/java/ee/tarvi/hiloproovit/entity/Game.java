@@ -19,6 +19,9 @@ public class Game {
     private long time;
     private Date creationDate;
 
-    @OneToOne
+    // @OneToOne ja läheb teist korda
+//    org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "uk_idsm5ox8o1mqy9kahkxbfqii6"
+//    Detail: Key (player_name)=(Mihkel) already exists.
+    @ManyToOne
     private Player player;
 }

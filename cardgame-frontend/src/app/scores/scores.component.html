@@ -1,1 +1,5 @@
-<p>scores works!</p>
+<div *ngFor="let game of games">
+  <span>{{game.id}} - </span>
+  <span>{{game.points}} - </span>
+  <span>{{game.player.name}}</span>
+</div>
